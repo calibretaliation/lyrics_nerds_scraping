@@ -1,0 +1,5 @@
+beautifulsoup4==4.12.3
+pymongo==4.6.3
+Requests==2.31.0
+requests_ip_rotator==1.0.14
+tqdm==4.66.2
