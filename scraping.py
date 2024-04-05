@@ -15,14 +15,16 @@ parser.add_argument("--singer-url", default = None,
                     help = "Singer URL to get their songs' lyrics and information, only available with mode = \"singer\"")
 parser.add_argument("--test", action='store_true',
                     help = "Debug mode, not write to DB, should be used with --print-result option")
+parser.add_argument("--tor", action='store_true',
+                    help = "Whether to USE Tor or not, default = True = Use Tor")
 # parser.add_argument("--test", type=bool, default=False,
 #                     help = "Debug mode, not write to DB, should be used with --print-result option")
 
 
 if __name__ == '__main__':
     args = parser.parse_args()
-    scraper = Scraper(debug=args.test)
-    # scraper.test_public_ip()
+    scraper = Scraper(debug=args.test, tor=args.tor)
+    scraper.test_public_ip()
     scraper.start_session()
     try:
         if args.mode=="song":
@@ -34,7 +36,7 @@ if __name__ == '__main__':
                 print("Sucessfully scraped song: {}\nMetadata: {}".format(song.metadata["name"],song.metadata))
                 print("Lyrics: ", song.lyrics)
         elif args.mode=="singer":
-            singer_url = args.singet_url
+            singer_url = args.singer_url
             singer = scraper.get_singer(singer_url)
             singer_songs = scraper.get_songs_by_singer(singer)
             if args.print_result:

@@ -8,7 +8,9 @@ class Config:
 
     mongodb_host = 'localhost'
     mongodb_port = 27017
-
+    PROXY = 'socks5://127.0.0.1:7000'
+    SOCKS_PORT= 7000
+    CONTROL_PORT=9051
     check_const = "Usage of azlyrics.com content by any third-party lyrics provider is prohibited by our licensing agreement. Sorry about that."
     def get_token(self):
         return self.TOKEN
